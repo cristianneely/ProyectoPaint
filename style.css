@@ -1,0 +1,20 @@
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  
+}
+
+.pixel {
+  width: 18px;
+  height: 18px;
+  border: 1px solid black;
+  background-color: rgb(103, 103, 47);
+}
+
+.pintado {
+  background-color: rgb(144, 32, 209);
+}
