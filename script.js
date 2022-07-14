@@ -2,13 +2,15 @@ class Pixel {
   constructor() {
     this.color = false;
     this.char = "░░";
+    this.style = " ";
   }
   paint() {
     this.color = true;
     this.char = "██";
+    this.style = "pintado";
   }
   erase() {
-    this.color = false;
+    this.style = "";
   }
 }
 
@@ -47,28 +49,67 @@ class Canva {
       alert(alerta);
       
     }
-    
-    
-  
+
+    renderHtml(){
+      let rend = new Array(this.height);
+      let htmlRender ='' ;
+      for (let i = 0; i < rend.length; i++) {
+          rend[i] = new Array(this.width);
+          htmlRender +=  '<div class="row">';
+          for (let j = 0; j < this.width; j++) {
+            rend[i][j] = this.pixels[i][j].style;
+            htmlRender += '<div class="pixel '+rend[i][j]+'" id="px-'+i+'-'+j+'"></div>';
+          }
+          htmlRender +=  '</div>\n ';
+        }
+        
+        const generated = document.querySelector(".generated");
+        //let rows = document.createElement('div');
+        generated.innerHTML = htmlRender;
+        this.becomeClickable();
+        //generated.appendChild(rows);
+        //console.log(htmlRender);
+        
+        
+      }
+  becomeClickable(){
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
+         const p = document.getElementById('px-'+i+'-'+j);
+         //console.log(p);
+         p.addEventListener("click", () => {
+          //console.log("clicked element"+i+"."+j);
+          this.pixels[i][j].paint();
+          this.renderHtml();
+        });
+      }
+      
+    }
+  }
 }
 
 
-/*
-alert("Bienvenido al Proyecto Paint. Esto es un simulador de software para dibujar");
-alert("Instrucciones:"+'\n'+" Se muestra un lienzo de 8x8 pixeles. Tienes que seleccionar pixeles para que se pinten. La manera de seleccionarlos es eligiendo la coordenada X y luego la coordenada Y. Se termina cuando se ingresa cualquier valor fuera del rango (0-7) ");
 
-let Tela = new Canva(8,8);
+
+
+let Tela = new Canva(20
+,20);
 Tela.inicializar();
-Tela.render();
+Tela.renderHtml();
+Tela.becomeClickable();
 
-let inputX = 0;
+
+
+
+/*let inputX = 0;
 let inputY= 0;
 
+
 while(!isNaN(inputX) && !isNaN(inputY)){
+Tela.renderHtml();
 inputX = prompt("Ingresa coordenada X");
 inputY = prompt("Ingresa coordenada Y");
 Tela.pixels[inputX][inputY].paint();
-Tela.render();
-}
+Tela.renderHtml();
+}*/
 
-*/
