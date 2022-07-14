@@ -52,7 +52,12 @@ class Canva {
   
 }
 
-let Tela = new Canva(4,4);
+
+/*
+alert("Bienvenido al Proyecto Paint. Esto es un simulador de software para dibujar");
+alert("Instrucciones:"+'\n'+" Se muestra un lienzo de 8x8 pixeles. Tienes que seleccionar pixeles para que se pinten. La manera de seleccionarlos es eligiendo la coordenada X y luego la coordenada Y. Se termina cuando se ingresa cualquier valor fuera del rango (0-7) ");
+
+let Tela = new Canva(8,8);
 Tela.inicializar();
 Tela.render();
 
@@ -66,4 +71,4 @@ Tela.pixels[inputX][inputY].paint();
 Tela.render();
 }
 
-
+*/
