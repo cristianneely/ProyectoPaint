@@ -64,11 +64,9 @@ class Canva {
         }
         
         const generated = document.querySelector(".generated");
-        //let rows = document.createElement('div');
         generated.innerHTML = htmlRender;
         this.becomeClickable();
-        //generated.appendChild(rows);
-        //console.log(htmlRender);
+        
         
         
       }
@@ -76,7 +74,6 @@ class Canva {
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
          const p = document.getElementById('px-'+i+'-'+j);
-         //console.log(p);
          p.addEventListener("click", () => {
           //console.log("clicked element"+i+"."+j);
           this.pixels[i][j].paint();
@@ -92,24 +89,10 @@ class Canva {
 
 
 
-let Tela = new Canva(20
-,20);
+let Tela = new Canva(30
+,30);
 Tela.inicializar();
 Tela.renderHtml();
 Tela.becomeClickable();
 
-
-
-
-/*let inputX = 0;
-let inputY= 0;
-
-
-while(!isNaN(inputX) && !isNaN(inputY)){
-Tela.renderHtml();
-inputX = prompt("Ingresa coordenada X");
-inputY = prompt("Ingresa coordenada Y");
-Tela.pixels[inputX][inputY].paint();
-Tela.renderHtml();
-}*/
 
