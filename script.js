@@ -19,12 +19,12 @@ class Canva {
     this.height = height;
     this.width = width;
     this.pixels = new Array();
+    this.cursorPressed = false;
 
     for (let i = 0; i < height; i++) {
       const element = new Array(width);
       this.pixels.push(element);
     }
-
   }
   inicializar() {
     for (let i = 0; i < this.pixels.length; i++) {
@@ -34,65 +34,73 @@ class Canva {
     }
   }
 
-  render(){
+  render() {
     let rend = new Array(this.height);
-    let alerta ='' ;
+    let alerta = "";
     for (let i = 0; i < rend.length; i++) {
-        rend[i] = new Array(this.width);
-        for (let j = 0; j < this.width; j++) {
-          rend[i][j] = this.pixels[i][j].char;
-          alerta += this.pixels[i][j].char;
-        }
-        alerta +=  '\n';
+      rend[i] = new Array(this.width);
+      for (let j = 0; j < this.width; j++) {
+        rend[i][j] = this.pixels[i][j].char;
+        alerta += this.pixels[i][j].char;
       }
-      console.table(rend);
-      alert(alerta);
-      
+      alerta += "\n";
+    }
+    console.table(rend);
+    alert(alerta);
+  }
+
+  renderHtml() {
+    let rend = new Array(this.height);
+    let htmlRender = "";
+    for (let i = 0; i < rend.length; i++) {
+      rend[i] = new Array(this.width);
+      htmlRender += '<div class="row">';
+      for (let j = 0; j < this.width; j++) {
+        rend[i][j] = this.pixels[i][j].style;
+        htmlRender +=
+          '<div class="pixel ' +
+          rend[i][j] +
+          '" id="px-' +
+          i +
+          "-" +
+          j +
+          '"></div>';
+      }
+      htmlRender += "</div>\n ";
     }
 
-    renderHtml(){
-      let rend = new Array(this.height);
-      let htmlRender ='' ;
-      for (let i = 0; i < rend.length; i++) {
-          rend[i] = new Array(this.width);
-          htmlRender +=  '<div class="row">';
-          for (let j = 0; j < this.width; j++) {
-            rend[i][j] = this.pixels[i][j].style;
-            htmlRender += '<div class="pixel '+rend[i][j]+'" id="px-'+i+'-'+j+'"></div>';
-          }
-          htmlRender +=  '</div>\n ';
-        }
-        
-        const generated = document.querySelector(".generated");
-        generated.innerHTML = htmlRender;
-        this.becomeClickable();
-        
-        
-        
-      }
-  becomeClickable(){
+    const generated = document.querySelector(".generated");
+    generated.innerHTML = htmlRender;
+    this.becomeClickable();
+  }
+  becomeClickable() {
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-         const p = document.getElementById('px-'+i+'-'+j);
-         p.addEventListener("click", () => {
-          //console.log("clicked element"+i+"."+j);
+        const p = document.getElementById("px-" + i + "-" + j);
+        
+        p.addEventListener("mousemove", () => {
+          if (this.cursorPressed) {
+            this.pixels[i][j].paint();
+          }
+        });
+        p.addEventListener("mousedown", () => {
+          this.cursorPressed = true;
           this.pixels[i][j].paint();
           this.renderHtml();
         });
+
+        p.addEventListener("mouseup", () => {
+          console.log("up");
+          this.cursorPressed = false;
+          this.renderHtml();
+        });
       }
-      
     }
+    
   }
 }
 
-
-
-
-
-let Tela = new Canva(30
-,30);
+let Tela = new Canva(40, 40);
 Tela.inicializar();
 Tela.renderHtml();
 Tela.becomeClickable();
-
-

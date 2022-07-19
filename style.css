@@ -10,8 +10,8 @@
 }
 
 .pixel {
-  width: 12px;
-  height: 12px;
+  width: 5px;
+  height: 5px;
   border: 1px solid lightblue;
   background-color: lightskyblue;
 }
