@@ -33,6 +33,8 @@ class Canva {
         this.pixels[i][j] = new Pixel(i, j);
       }
     }
+    this.renderHtml();
+     this.becomeClickable();
   }
 
   render() {
@@ -73,6 +75,7 @@ class Canva {
     const generated = document.querySelector(".generated");
     generated.innerHTML = htmlRender;
     this.becomeClickable();
+    
   }
   becomeClickable() {
     for (let i = 0; i < this.height; i++) {
@@ -91,7 +94,6 @@ class Canva {
         });
 
         p.addEventListener("mouseup", () => {
-          console.log("up");
           this.cursorPressed = false;
           this.renderHtml();
         });
@@ -99,24 +101,38 @@ class Canva {
     }
     
   }
+  save(){
+    sessionStorage.setItem('savedTela',htmlRender);
+  }
+  load(){
+    const load = sessionStorage.getItem('savedTela');
+    const generated = document.querySelector(".generated");
+    generated.innerHTML = htmlRender;
+    this.becomeClickable();
+  }
 }
 
 
 
 
-let Tela = new Canva(80, 80);
+let Tela = new Canva(50, 50);
 Tela.inicializar();
 
 const c1 = document.querySelector(".color1");
-console.log(c1);
 c1.addEventListener("click", () => {
   Tela.color="pintado"
 });
 const c2= document.querySelector(".color2");
-console.log(c1);
 c2.addEventListener("click", () => {
   Tela.color="pintado2"
 });
+const c3= document.querySelector(".color3");
+c3.addEventListener("click", () => {
+  Tela.color="pintado3"
+});
+const c4= document.querySelector(".color4");
+c4.addEventListener("click", () => {
+  Tela.inicializar();
+});
 
-Tela.renderHtml();
-Tela.becomeClickable();
+

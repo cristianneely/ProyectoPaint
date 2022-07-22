@@ -11,9 +11,9 @@
 }
 
 .pixel {
-  width: 3px;
-  height: 3px;
-  border: 0px solid lightblue;
+  width: 8px;
+  height: 8px;
+  border: 1px solid lightblue;
   background-color: lightskyblue;
 }
 
@@ -23,6 +23,10 @@
 .pintado2 {
   background-color: rgb(136, 51, 186);
 }
+.pintado3 {
+  background-color: rgb(255, 255, 255);
+}
+
 
 .colorPicker {
   width: 30%;
@@ -34,7 +38,7 @@ justify-content: space-around;
 
 }
 
-.color {
+.button {
   height: 20px;
   width: 80px;
   border: solid 2px black;
@@ -45,6 +49,9 @@ justify-content: space-around;
 }
 .color2{
   background-color: rgb(136, 51, 186);
+}
+.color3{
+  background-color: rgb(255,255,255);
 }
 
 .wrapper {
