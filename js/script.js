@@ -34,7 +34,7 @@ class Canva {
       }
     }
     this.renderHtml();
-     this.becomeClickable();
+    this.becomeClickable();
   }
 
   render() {
@@ -75,13 +75,12 @@ class Canva {
     const generated = document.querySelector(".generated");
     generated.innerHTML = htmlRender;
     this.becomeClickable();
-    
   }
   becomeClickable() {
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
         const p = document.getElementById("px-" + i + "-" + j);
-        
+
         p.addEventListener("mousemove", () => {
           if (this.cursorPressed) {
             this.pixels[i][j].paint(this.color);
@@ -99,40 +98,54 @@ class Canva {
         });
       }
     }
+  }
+  save() {
+    const guardarLocal = (clave, valor) => {
+      localStorage.setItem(clave, valor);
+    };
+    guardarLocal("dibujo", JSON.stringify(this.pixels));
+  }
+  load() {
+    const filas = JSON.parse(localStorage.getItem("dibujo"));
     
-  }
-  save(){
-    sessionStorage.setItem('savedTela',htmlRender);
-  }
-  load(){
-    const load = sessionStorage.getItem('savedTela');
-    const generated = document.querySelector(".generated");
-    generated.innerHTML = htmlRender;
-    this.becomeClickable();
+
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
+        this.pixels[i][j].paint(filas[i][j].style);
+      }
+    }
+    this.renderHtml();
   }
 }
-
-
-
 
 let Tela = new Canva(50, 50);
 Tela.inicializar();
 
 const c1 = document.querySelector(".color1");
 c1.addEventListener("click", () => {
-  Tela.color="pintado"
+  Tela.color = "pintado";
 });
-const c2= document.querySelector(".color2");
+const c2 = document.querySelector(".color2");
 c2.addEventListener("click", () => {
-  Tela.color="pintado2"
+  Tela.color = "pintado2";
 });
-const c3= document.querySelector(".color3");
+const c3 = document.querySelector(".color3");
 c3.addEventListener("click", () => {
-  Tela.color="pintado3"
+  Tela.color = "pintado3";
 });
-const c4= document.querySelector(".color4");
+const c4 = document.querySelector(".color4");
 c4.addEventListener("click", () => {
   Tela.inicializar();
+});
+
+const c5 = document.querySelector(".color5");
+c5.addEventListener("click", () => {
+  Tela.save();
+});
+
+const c6 = document.querySelector(".color6");
+c6.addEventListener("click", () => {
+  Tela.load();
 });
 
 
