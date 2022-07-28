@@ -104,8 +104,45 @@ class Canva {
       localStorage.setItem(clave, valor);
     };
     guardarLocal("dibujo", JSON.stringify(this.pixels));
+
+
+    //Notificación de Guarddo
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Guardando tu dibujo...'
+    })
   }
   load() {
+
+    //Notificación de Cargado
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: false,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Dibujo Cargado'
+    })
     const filas = JSON.parse(localStorage.getItem("dibujo"));
     
 
@@ -118,9 +155,10 @@ class Canva {
   }
 }
 
-let Tela = new Canva(50, 50);
-Tela.inicializar();
+function start (size){
 
+let Tela = new Canva(size, size);
+Tela.inicializar();
 const c1 = document.querySelector(".color1");
 c1.addEventListener("click", () => {
   Tela.color = "pintado";
@@ -147,5 +185,10 @@ const c6 = document.querySelector(".color6");
 c6.addEventListener("click", () => {
   Tela.load();
 });
+};
+
+let size = 50
+start(size);
+
 
 
