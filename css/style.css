@@ -1,0 +1,61 @@
+.rows {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.pixel {
+  width: 8px;
+  height: 8px;
+  border: 1px solid lightblue;
+  background-color: lightskyblue;
+}
+
+.pintado {
+  background-color: rgb(184, 123, 219);
+}
+.pintado2 {
+  background-color: rgb(136, 51, 186);
+}
+.pintado3 {
+  background-color: rgb(255, 255, 255);
+}
+
+
+.colorPicker {
+  width: 30%;
+  max-width: 50%;
+  text-align: center;
+  display: flex;
+justify-content: space-around;
+
+
+}
+
+.button {
+  height: 20px;
+  width: 80px;
+  border: solid 2px black;
+  border-radius: 5px;
+}
+.color1{
+  background-color: rgb(184, 123, 219);
+}
+.color2{
+  background-color: rgb(136, 51, 186);
+}
+.color3{
+  background-color: rgb(255,255,255);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
